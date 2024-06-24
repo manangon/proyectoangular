@@ -1,0 +1,57 @@
+<div class="card" style="width: 100%">
+  <div class="card-header">
+    {{title}}
+  </div>
+  <div class="card-body">
+
+    <div class="mb-3 row">
+      <label for="filterText" class="col-sm-2 col-form-label">Filtrar por:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="filterText" [(ngModel)]="filterText" (input)="filterCars()"
+          placeholder="código/marca/modelo">
+      </div>
+    </div>
+
+    <div>
+      <button class="btn btn-secondary" (click)="newCar()">Nuevo</button>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"><button class="btn btn-success" (click)="showPictureFn()">{{textShowPicture}}</button></th>
+          <th scope="col">C&oacute;digo</th>
+          <th scope="col">Marca</th>
+          <th scope="col">Modelo</th>
+          <th scope="col">A&ntilde;o</th>
+          <th scope="col">Kil&oacute;metros</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Calificaci&oacute;n</th>
+          <th scope="col">Opci&oacute;n</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let car of getCurrentPageCars()">
+          <td>
+            <div *ngIf="car.foto">
+              <img [src]="car.foto" alt="Imagen del vehiculo" style="width: 100px;" *ngIf="showPicture">
+            </div>
+          </td>
+          <td>{{car.codigo}}</td>
+          <td>{{car.marca}}</td>
+          <td>{{car.modelo}}</td>
+          <td>{{car.anio}}</td>
+          <td>{{car.kilometraje | number:'1.2-2'}}</td>
+          <td>{{car.precio | currency:'USD':'symbol':'1.2-2'}}</td>
+          <td><span *ngFor="let _ of starsArray(car.calificacion)" class="fa fa-star checked"></span></td>
+          <td><button class="btn btn-info" (click)="showDetail(car)">Ver/Editar</button>
+            <button class="btn btn-danger" (click)="deleteDetail(car)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="btn btn-primary" (click)="previousPage()" [disabled]="currentPage === 1">Anterior</button>
+    <button class="btn btn-primary" (click)="nextPage()" [disabled]="currentPage === totalPages">Siguiente</button>
+    <p>Página {{currentPage}} de {{totalPages}}</p>
+  </div>
+</div>

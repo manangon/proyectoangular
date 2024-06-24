@@ -1,0 +1,12 @@
+.car {
+    margin-bottom: 20px;
+}
+
+.fa-star.checked {
+    color: gold;
+    font-size: 20px;
+}
+
+th {
+    color: cornflowerblue;
+}

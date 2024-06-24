@@ -1,0 +1,79 @@
+<div class="card" style="width: 100%">
+    <div class="card-header">
+        {{title}}
+    </div>
+    <div class="card-body">
+        <form [formGroup]="formulario" (ngSubmit)="saveClient()" *ngIf="formulario">
+            <div class="col-md-12 alinear-input">
+                <div class="col-md-2">
+                    <label class="form-label">Nombres:</label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" formControlName="nombre">
+                    <span class="text-danger"
+                        *ngIf="formulario.controls['nombre'].errors && formulario.controls['nombre'].touched">
+                        Campo no v&aacute;lido</span>
+                </div>
+            </div>
+            <div class="col-md-12 alinear-input">
+                <div class="col-md-2">
+                    <label class="form-label">Apellidos:</label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" formControlName="apellido">
+                    <span class="text-danger"
+                        *ngIf="formulario.controls['apellido'].errors && formulario.controls['apellido'].touched">
+                        Campo no v&aacute;lido</span>
+                </div>
+            </div>
+            <div class="col-md-12 alinear-input">
+                <div class="col-md-2">
+                    <label class="form-label">Contraseña:</label>
+                </div>
+                <div class="col-md-10">
+                    <input type="password" class="form-control" formControlName="password">
+                    <span class="text-danger"
+                        *ngIf="formulario.controls['password'].errors && formulario.controls['password'].touched">
+                        Campo no v&aacute;lido</span>
+                </div>
+            </div>
+
+            <div class="col-md-12 alinear-input">
+                <div class="col-md-3">
+                    <label class="form-check-label" for="chbContact">
+                        ¿Desea contacto?
+                    </label>
+                </div>
+                <div class="col-md-9">
+                    <input class="form-check-input" type="checkbox" value="" id="chbContact" (click)="showContact($event)">
+                </div>
+            </div>
+
+            <div class="col-md-12 alinear-input" *ngIf="hasContact">
+                <div class="col-md-2">
+                    <label class="form-label">Email:</label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" formControlName="email">
+                    <span class="text-danger"
+                        *ngIf="formulario.controls['email'].errors && formulario.controls['email'].touched">
+                        Campo no v&aacute;lido</span>
+                </div>
+            </div>
+            <div class="col-md-12 alinear-input" *ngIf="hasContact">
+                <div class="col-md-2">
+                    <label class="form-label">Teléfono:</label>
+                </div>
+                <div class="col-md-10">
+                    <input type="string" class="form-control" formControlName="telefono">
+                    <span class="text-danger"
+                        *ngIf="formulario.controls['telefono'].errors && formulario.controls['telefono'].touched">
+                        Campo no v&aacute;lido
+                    </span>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <button class="btn btn-primary" (click)="returnInit()">Inicio</button>
+        </form>
+    </div>
+</div>
